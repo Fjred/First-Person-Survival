@@ -107,10 +107,8 @@ public class TerrainGenerator : MonoBehaviour
                     float normalizedX = x / (float)terrainData.alphamapWidth;
                     float normalizedY = y / (float)terrainData.alphamapHeight;
 
-                    // Calculate world position without y-coordinate
                     Vector3 worldPos = new Vector3(normalizedX * size.x, 0, normalizedY * size.z) + transform.position;
 
-                    // Get the correct y-coordinate using terrain.GetHeight
                     float terrainHeight = terrainData.GetHeight(Mathf.RoundToInt(normalizedX * (resolution - 1)), Mathf.RoundToInt(normalizedY * (resolution - 1)));
                     worldPos.y = terrainHeight + transform.position.y;
 
@@ -119,7 +117,6 @@ public class TerrainGenerator : MonoBehaviour
             }
         }
 
-        // Shuffle the list to randomize tree placement
         for (int i = grassLocations.Count - 1; i > 0; i--)
         {
             int j = UnityEngine.Random.Range(0, i + 1);
